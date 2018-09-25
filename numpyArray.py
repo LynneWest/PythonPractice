@@ -9,3 +9,4 @@ np_weight = np.array(weight)
 #calculate bmi for each element in the lists
 bmi = 703*(np_weight/np_height**2)
 print(np.round(bmi,2))
+print(np.round(bmi[0]))
