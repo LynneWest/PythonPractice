@@ -11,7 +11,10 @@ conn_str = (
 cnxn = pyodbc.connect(conn_str)
 cur = cnxn.cursor()
 
-cur.execute("SELECT Description, Count(ORDER_LINE_ITEM.ItemNumber) AS TotalOrdered FROM ORDER_LINE_ITEM RIGHT OUTER JOIN ITEM ON ORDER_LINE_ITEM.ItemNumber = ITEM.ItemNumber GROUP BY ITEM.Description")
+cur.execute("""SELECT Description, Count(ORDER_LINE_ITEM.ItemNumber) AS TotalOrdered 
+FROM ORDER_LINE_ITEM RIGHT OUTER JOIN ITEM 
+    ON ORDER_LINE_ITEM.ItemNumber = ITEM.ItemNumber 
+GROUP BY ITEM.Description""")
 
 data = np.array(cur.fetchall())
 x = data[:,0]
